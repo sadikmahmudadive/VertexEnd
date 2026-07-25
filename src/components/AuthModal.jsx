@@ -81,7 +81,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
               marginBottom: '14px',
             }}
           >
-            <Shield size={24} color="#0a1020" />
+            <Shield size={24} color="#ffffff" />
           </div>
           <h3 className="heading-3" style={{ marginBottom: '8px' }}>
             Team access
@@ -95,8 +95,8 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
         <div
           style={{
             padding: '12px 14px',
-            background: 'rgba(16, 28, 87, 0.05)',
-            borderLeft: '3px solid var(--color-primary-dark)',
+            background: 'rgba(37, 99, 235, 0.06)',
+            borderLeft: '3px solid var(--color-primary)',
             marginBottom: '20px',
             fontSize: '12px',
             color: 'var(--color-text-muted)',

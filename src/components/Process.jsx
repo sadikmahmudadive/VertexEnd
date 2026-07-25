@@ -37,21 +37,16 @@ export default function Process() {
           </p>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-            gap: '20px',
-          }}
-        >
+        <div className="three-column-grid">
           {STEPS.map((step, index) => (
-            <div key={step.title} className="card-light reveal-on-scroll" style={{ padding: '28px' }}>
+            <div key={step.title} className="card-light process-card reveal-on-scroll">
               <div
+                className="process-icon"
                 style={{
                   width: '46px',
                   height: '46px',
-                  background: 'rgba(240, 90, 40, 0.10)',
-                  border: '1px solid rgba(240, 90, 40, 0.14)',
+                  background: 'rgba(18, 103, 214, 0.08)',
+                  border: '1px solid rgba(18, 103, 214, 0.16)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

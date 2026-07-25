@@ -20,15 +20,15 @@ export const openCloudinaryWidget = (onSuccessCallback) => {
         maxFileSize: 25000000, // 25MB
         styles: {
           palette: {
-            window: "#0b0f19",
-            sourceBg: "#0f172a",
-            windowBorder: "#6366f1",
-            tabIcon: "#06b6d4",
+            window: "#071a3d",
+            sourceBg: "#0b2858",
+            windowBorder: "#075dcc",
+            tabIcon: "#f6c443",
             inactiveTabIcon: "#64748b",
-            menuBg: "#060913",
-            link: "#06b6d4",
-            action: "#6366f1",
-            inProgress: "#3b82f6",
+            menuBg: "#06152f",
+            link: "#f6c443",
+            action: "#075dcc",
+            inProgress: "#1687e8",
             complete: "#10b981",
             error: "#ef4444",
             textDark: "#000000",

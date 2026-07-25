@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import TrustBar from './components/TrustBar';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Process from './components/Process';
-import MediaUploader from './components/MediaUploader';
 import AuthModal from './components/AuthModal';
 import AdminPanel from './components/AdminPanel';
 import ContactSection from './components/ContactSection';
@@ -23,7 +23,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 export default function App() {
   const [user, setUser] = useState(null);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [isUploaderOpen, setIsUploaderOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [customMediaList, setCustomMediaList] = useState([]);
   
@@ -108,9 +107,14 @@ export default function App() {
       publicId: mediaItem.publicId || String(Date.now()),
       format: mediaItem.format
     };
-    setCustomMediaList((prev) => [newMedia, ...prev]);
-    // Save uploaded Cloudinary media info to Firestore
-    await saveProjectToFirestore(newMedia);
+    const result = await saveProjectToFirestore(newMedia);
+    if (!result.success) {
+      throw new Error(result.error || 'The uploaded asset could not be saved.');
+    }
+
+    const savedMedia = { ...newMedia, id: result.id || `local-${Date.now()}` };
+    setCustomMediaList((prev) => [savedMedia, ...prev]);
+    return savedMedia;
   };
 
   return (
@@ -120,16 +124,13 @@ export default function App() {
         user={user} 
         onOpenAuth={() => setIsAuthOpen(true)} 
         onLogout={handleLogout}
-        onOpenUploader={() => setIsUploaderOpen(true)}
         onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* Main Sections */}
       <main style={{ flex: 1 }}>
-        <Hero 
-          onOpenAuth={() => setIsAuthOpen(true)}
-          settings={homepageSettings}
-        />
+        <Hero settings={homepageSettings} />
+        <TrustBar />
         <Services servicesList={servicesList} />
         <Process />
         <Portfolio customMediaList={customMediaList} />
@@ -143,12 +144,6 @@ export default function App() {
         onAuthSuccess={(authUser) => setUser(authUser)}
       />
 
-      <MediaUploader 
-        isOpen={isUploaderOpen}
-        onClose={() => setIsUploaderOpen(false)}
-        onUploadComplete={handleUploadComplete}
-      />
-
       <AdminPanel 
         isOpen={isAdminOpen}
         onClose={() => setIsAdminOpen(false)}
@@ -158,6 +153,7 @@ export default function App() {
         onUpdateHomepageSettings={(updated) => setHomepageSettings(updated)}
         onUpdateServicesList={(updated) => setServicesList(updated)}
         onUpdateProjectsList={(updated) => setCustomMediaList(updated)}
+        onUploadComplete={handleUploadComplete}
       />
 
       {/* Footer */}

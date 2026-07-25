@@ -67,19 +67,14 @@ export default function Services({ servicesList }) {
           </p>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-            gap: '20px',
-          }}
-        >
+        <div className="three-column-grid">
           {displayServices.map((srv, idx) => {
             const icon = ICON_MAP[srv.tag] || <Cpu size={22} color="var(--color-primary)" />;
 
             return (
-              <article key={idx} className="card-light reveal-on-scroll" style={{ padding: '28px' }}>
+              <article key={idx} className="card-light service-card reveal-on-scroll">
                 <div
+                  className="service-card-header"
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -97,11 +92,12 @@ export default function Services({ servicesList }) {
                     </h3>
                   </div>
                   <div
+                    className="service-icon"
                     style={{
                       width: '44px',
                       height: '44px',
-                      background: 'rgba(240, 90, 40, 0.08)',
-                      border: '1px solid rgba(240, 90, 40, 0.14)',
+                      background: 'rgba(37, 99, 235, 0.08)',
+                      border: '1px solid rgba(37, 99, 235, 0.16)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',

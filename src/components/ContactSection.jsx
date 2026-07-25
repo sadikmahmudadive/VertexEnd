@@ -36,14 +36,7 @@ export default function ContactSection() {
   return (
     <section id="contact" className="section section-muted">
       <div className="container">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '0.95fr 1.05fr',
-            gap: '56px',
-            alignItems: 'start',
-          }}
-        >
+        <div className="contact-grid">
           <div className="reveal-on-scroll">
             <span className="overline">Contact</span>
             <h2 className="heading-2" style={{ marginBottom: '18px' }}>
@@ -84,9 +77,9 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="card-accent" style={{ background: 'rgba(240, 90, 40, 0.12)' }}>
+            <div className="card-accent" style={{ background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.25)' }}>
               <div className="contact-item" style={{ alignItems: 'flex-start', marginBottom: 0 }}>
-                <div className="contact-icon" style={{ background: 'var(--color-primary)', color: '#0a1020' }}>
+                <div className="contact-icon" style={{ background: 'var(--color-secondary)', color: '#0f172a' }}>
                   <Clock3 size={18} />
                 </div>
                 <div>
@@ -127,9 +120,9 @@ export default function ContactSection() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="card-light" style={{ padding: '32px' }}>
+              <form onSubmit={handleSubmit} className="card-light contact-form-card" style={{ padding: '32px' }}>
                 <div style={{ display: 'grid', gap: '18px' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div className="contact-name-grid">
                     <div>
                       <label className="input-label" htmlFor="name">
                         Name

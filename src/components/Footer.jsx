@@ -11,13 +11,7 @@ export default function Footer() {
   return (
     <footer style={{ background: 'var(--color-surface-alt)', color: 'var(--color-white)' }}>
       <div className="container" style={{ paddingTop: '72px', paddingBottom: '32px' }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.35fr 1fr 1fr 1fr',
-            gap: '32px',
-          }}
-        >
+        <div className="footer-grid">
           <div>
             <a href="#overview" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', marginBottom: '18px' }}>
               <div
@@ -30,7 +24,7 @@ export default function Footer() {
                   justifyContent: 'center',
                 }}
               >
-                <Terminal size={18} color="#0a1020" strokeWidth={2.5} />
+                <Terminal size={18} color="#ffffff" strokeWidth={2.5} />
               </div>
               <span style={{ fontFamily: 'var(--font-primary)', fontSize: '20px', fontWeight: 700, color: '#ffffff' }}>
                 VertexEnd

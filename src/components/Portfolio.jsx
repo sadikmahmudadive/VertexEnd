@@ -99,17 +99,11 @@ export default function Portfolio({ customMediaList }) {
           ))}
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '22px',
-          }}
-        >
+        <div className="portfolio-grid">
           {filtered.map((project, idx) => (
             <article
               key={project.id}
-              className="card-light reveal-on-scroll"
+              className="card-light project-card reveal-on-scroll"
               style={{
                 padding: 0,
                 overflow: 'hidden',
@@ -118,7 +112,7 @@ export default function Portfolio({ customMediaList }) {
                 transitionDelay: `${(idx % 4) * 80}ms`,
               }}
             >
-              <div style={{ position: 'relative', height: '210px', background: 'var(--color-surface-alt)' }}>
+              <div className="project-media" style={{ position: 'relative', height: '210px', background: 'var(--color-surface-alt)' }}>
                 {project.type === 'video' ? (
                   <video
                     src={project.mediaUrl}
@@ -145,8 +139,8 @@ export default function Portfolio({ customMediaList }) {
                     alignItems: 'center',
                     gap: '6px',
                     padding: '5px 10px',
-                    background: 'rgba(10, 16, 28, 0.84)',
-                    color: '#ffffff',
+                    background: 'rgba(10, 16, 28, 0.88)',
+                    color: project.type === 'video' ? 'var(--color-secondary-light)' : '#ffffff',
                     fontSize: '11px',
                     fontWeight: 700,
                     letterSpacing: '0.08em',
@@ -158,7 +152,7 @@ export default function Portfolio({ customMediaList }) {
                 </div>
               </div>
 
-              <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
+              <div className="project-content" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', alignItems: 'flex-start' }}>
                   <div>
                     <span
@@ -176,7 +170,7 @@ export default function Portfolio({ customMediaList }) {
                       {project.title}
                     </h3>
                   </div>
-                  <ArrowUpRight size={18} color="var(--color-text-muted)" />
+                  <ArrowUpRight className="project-arrow" size={18} color="var(--color-text-muted)" />
                 </div>
 
                 <p className="body-compact" style={{ color: 'var(--color-text-muted)' }}>
@@ -184,6 +178,7 @@ export default function Portfolio({ customMediaList }) {
                 </p>
 
                 <div
+                  className="project-outcome"
                   style={{
                     padding: '14px 16px',
                     background: 'var(--color-bg-muted)',
@@ -210,6 +205,7 @@ export default function Portfolio({ customMediaList }) {
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: 'auto' }}>
                   {project.tags.map((tag, i) => (
                     <span
+                      className="project-tag"
                       key={i}
                       style={{
                         fontSize: '11px',
