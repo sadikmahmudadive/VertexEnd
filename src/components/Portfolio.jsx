@@ -74,8 +74,8 @@ export default function Portfolio({ customMediaList }) {
     activeCategory === 'All' ? allProjects : allProjects.filter((project) => project.category === activeCategory);
 
   return (
-    <section id="work" className="section section-light">
-      <div className="container">
+    <section id="work" className="section" style={{ background: 'transparent' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="reveal-on-scroll section-header" style={{ marginBottom: '28px' }}>
           <span className="overline">Selected work</span>
           <h2 className="heading-2" style={{ maxWidth: '720px' }}>

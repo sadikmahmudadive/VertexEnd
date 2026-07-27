@@ -54,8 +54,8 @@ export default function Services({ servicesList }) {
   const displayServices = servicesList && servicesList.length > 0 ? servicesList : DEFAULT_SERVICES;
 
   return (
-    <section id="capabilities" className="section section-light">
-      <div className="container">
+    <section id="capabilities" className="section" style={{ background: 'transparent' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="reveal-on-scroll section-header">
           <span className="overline">Capabilities</span>
           <h2 className="heading-2" style={{ maxWidth: '720px' }}>

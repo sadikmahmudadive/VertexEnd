@@ -9,8 +9,8 @@ const FOOTER_LINKS = {
 
 export default function Footer() {
   return (
-    <footer style={{ background: 'var(--color-surface-alt)', color: 'var(--color-white)' }}>
-      <div className="container" style={{ paddingTop: '72px', paddingBottom: '32px' }}>
+    <footer style={{ background: 'transparent', color: 'var(--color-white)' }}>
+      <div className="container" style={{ paddingTop: '72px', paddingBottom: '32px', position: 'relative', zIndex: 1 }}>
         <div className="footer-grid">
           <div>
             <a href="#overview" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', marginBottom: '18px' }}>

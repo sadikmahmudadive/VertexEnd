@@ -24,8 +24,8 @@ const STEPS = [
 
 export default function Process() {
   return (
-    <section id="process" className="section section-muted">
-      <div className="container">
+    <section id="process" className="section" style={{ background: 'transparent' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="reveal-on-scroll section-header">
           <span className="overline">Delivery process</span>
           <h2 className="heading-2" style={{ maxWidth: '700px' }}>

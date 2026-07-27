@@ -34,8 +34,8 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="section section-muted">
-      <div className="container">
+    <section id="contact" className="section" style={{ background: 'transparent' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="contact-grid">
           <div className="reveal-on-scroll">
             <span className="overline">Contact</span>

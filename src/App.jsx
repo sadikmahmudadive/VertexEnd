@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import ScrollAnimation from './components/ScrollAnimation';
 import TrustBar from './components/TrustBar';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
@@ -127,8 +128,11 @@ export default function App() {
         onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
+      {/* Global Scroll Animation Background */}
+      <ScrollAnimation />
+
       {/* Main Sections */}
-      <main style={{ flex: 1 }}>
+      <main style={{ flex: 1, position: 'relative', zIndex: 1 }}>
         <Hero settings={homepageSettings} />
         <TrustBar />
         <Services servicesList={servicesList} />
