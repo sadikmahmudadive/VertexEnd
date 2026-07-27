@@ -65,7 +65,7 @@ export default function Portfolio({ customMediaList }) {
           posterUrl: item.posterUrl,
           description:
             item.description || 'A managed asset from the internal content workflow.',
-          outcome: item.outcome || 'Delivered through the VertexEnd content pipeline.',
+          outcome: item.outcome || 'Delivered through the VertexHand content pipeline.',
           tags: item.tags || ['Cloudinary', 'Firestore'],
         }))
       : INITIAL_PROJECTS;

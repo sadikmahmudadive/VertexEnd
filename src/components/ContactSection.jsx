@@ -54,7 +54,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="contact-label">Email</div>
-                  <div className="contact-value">hello@vertexend.dev</div>
+                  <div className="contact-value">hello@vertexhand.dev</div>
                 </div>
               </div>
               <div className="contact-item">

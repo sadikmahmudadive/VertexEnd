@@ -4,10 +4,10 @@ import { getFirestore, collection, addDoc, getDocs, doc, getDoc, setDoc, query, 
 
 // Read Firebase config from Vite env vars or fallback to demo config
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyDemoKeyVertexEnd2026",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "vertexend-app.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "vertexend-app",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "vertexend-app.appspot.com",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyDemoKeyVertexHand2026",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "vertexhand-app.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "vertexhand-app",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "vertexhand-app.appspot.com",
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "1234567890",
   appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:1234567890:web:abcdef123456"
 };

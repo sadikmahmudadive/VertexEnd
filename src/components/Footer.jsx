@@ -3,8 +3,8 @@ import { Terminal, Globe, Mail } from 'lucide-react';
 
 const FOOTER_LINKS = {
   Solutions: ['Product engineering', 'Cloud architecture', 'Internal tools', 'Mobile apps'],
-  Company: ['About VertexEnd', 'Capabilities', 'Process', 'Contact'],
-  Support: ['hello@vertexend.dev', '+1 (800) 287-8336', 'Remote-first team', 'Privacy policy'],
+  Company: ['About VertexHand', 'Capabilities', 'Process', 'Contact'],
+  Support: ['hello@vertexhand.dev', '+1 (800) 287-8336', 'Remote-first team', 'Privacy policy'],
 };
 
 export default function Footer() {
@@ -27,7 +27,7 @@ export default function Footer() {
                 <Terminal size={18} color="#ffffff" strokeWidth={2.5} />
               </div>
               <span style={{ fontFamily: 'var(--font-primary)', fontSize: '20px', fontWeight: 700, color: '#ffffff' }}>
-                VertexEnd
+                VertexHand
               </span>
             </a>
 
@@ -77,7 +77,7 @@ export default function Footer() {
                 {links.map((link) => (
                   <a
                     key={link}
-                    href={link.includes('@') || link.includes('+1') ? '#' : `#${link === 'About VertexEnd' ? 'overview' : link === 'Capabilities' ? 'capabilities' : link === 'Process' ? 'process' : link === 'Contact' ? 'contact' : 'overview'}`}
+                    href={link.includes('@') || link.includes('+1') ? '#' : `#${link === 'About VertexHand' ? 'overview' : link === 'Capabilities' ? 'capabilities' : link === 'Process' ? 'contact' : 'overview'}`}
                     style={{
                       color: 'rgba(255,255,255,0.76)',
                       textDecoration: 'none',
@@ -108,7 +108,7 @@ export default function Footer() {
           }}
         >
           <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.52)' }}>
-            © {new Date().getFullYear()} VertexEnd. All rights reserved.
+            © {new Date().getFullYear()} VertexHand. All rights reserved.
           </span>
           <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap' }}>
             {['Privacy Policy', 'Terms', 'Accessibility'].map((item) => (

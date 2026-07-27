@@ -15,7 +15,7 @@ export default function Hero({ settings }) {
     titleLine4: settings?.titleLine4 || 'and room to grow.',
     description:
       settings?.description ||
-      'VertexEnd designs and delivers modern software systems, product platforms, and cloud workflows for companies that need dependable execution and a partner that can ship.',
+      'VertexHand designs and delivers modern software systems, product platforms, and cloud workflows for companies that need dependable execution and a partner that can ship.',
     ctaPrimaryText: settings?.ctaPrimaryText || 'Start a Project',
     ctaSecondaryText: settings?.ctaSecondaryText || 'View Capabilities',
     stat1Value: settings?.stat1Value || '12+',
@@ -68,7 +68,7 @@ export default function Hero({ settings }) {
             </p>
           </div>
 
-          <aside className="hero-panel reveal-on-scroll delay-1" aria-label="VertexEnd delivery overview">
+          <aside className="hero-panel reveal-on-scroll delay-1" aria-label="VertexHand delivery overview">
             <div className="hero-panel-heading">
               <span>One team, end to end</span>
               <span className="hero-panel-status"><i /> Available for new work</span>

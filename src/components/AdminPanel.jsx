@@ -87,7 +87,7 @@ export default function AdminPanel({
     titleLine2: homepageSettings?.titleLine2 || 'teams that need',
     titleLine3: homepageSettings?.titleLine3 || 'speed, reliability,',
     titleLine4: homepageSettings?.titleLine4 || 'and room to grow.',
-    description: homepageSettings?.description || 'VertexEnd designs and delivers modern software systems, product platforms, and cloud workflows for growing companies.',
+    description: homepageSettings?.description || 'VertexHand designs and delivers modern software systems, product platforms, and cloud workflows for growing companies.',
     ctaPrimaryText: homepageSettings?.ctaPrimaryText || 'Start a Project',
     ctaSecondaryText: homepageSettings?.ctaSecondaryText || 'View Capabilities',
     stat1Value: homepageSettings?.stat1Value || '12+',
@@ -233,7 +233,7 @@ export default function AdminPanel({
           <div className="studio-brand">
             <span className="studio-logo"><Building2 size={20} /></span>
             <div>
-              <h2 id="studio-title">VertexEnd Content Studio</h2>
+              <h2 id="studio-title">VertexHand Content Studio</h2>
               <p>Manage the public website and incoming project inquiries.</p>
             </div>
           </div>
@@ -329,7 +329,7 @@ export default function AdminPanel({
                   <div>
                     <span>Capabilities</span>
                     <h3>Services shown on the website</h3>
-                    <p>Describe the work clients can engage VertexEnd to deliver.</p>
+                    <p>Describe the work clients can engage VertexHand to deliver.</p>
                   </div>
                   <div className="studio-heading-actions">
                     <button type="button" className="studio-secondary-button" onClick={() => setLocalServices([...localServices, { title: '', tag: 'Product', description: '' }])}>

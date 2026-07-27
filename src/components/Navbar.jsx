@@ -20,14 +20,14 @@ export default function Navbar({ user, onOpenAuth, onLogout, onOpenAdmin }) {
   return (
     <header className="site-header">
       <div className="container navbar-shell">
-        <a href="#overview" className="brand" aria-label="VertexEnd home">
+        <a href="#overview" className="brand" aria-label="VertexHand home">
           <span className="brand-mark" aria-hidden="true">
             <i />
             <i />
             <i />
             <i />
           </span>
-          <span className="brand-name">VertexEnd</span>
+          <span className="brand-name">VertexHand</span>
         </a>
 
         <nav className="desktop-nav" aria-label="Main navigation">

@@ -1,8 +1,8 @@
 // Cloudinary Media Service Configuration & Utilities
 
 export const CLOUDINARY_CONFIG = {
-  cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "vertexend-cloud",
-  uploadPreset: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET || "vertexend_unsigned"
+  cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "vertexhand-cloud",
+  uploadPreset: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET || "vertexhand_unsigned"
 };
 
 /**
