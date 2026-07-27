@@ -152,7 +152,7 @@ export default function Portfolio({ customMediaList }) {
                 </div>
               </div>
 
-              <div className="project-content" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
+              <div className="project-content" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '14px', flex: 1 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', alignItems: 'flex-start' }}>
                   <div>
                     <span
@@ -161,19 +161,19 @@ export default function Portfolio({ customMediaList }) {
                         fontWeight: 700,
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase',
-                        color: 'var(--color-primary-dark)',
+                        color: 'var(--color-secondary)',
                       }}
                     >
                       {project.category}
                     </span>
-                    <h3 className="heading-3" style={{ marginTop: '6px', marginBottom: 0 }}>
+                    <h3 style={{ marginTop: '4px', marginBottom: 0, color: '#ffffff', fontSize: '20px', fontWeight: 700, letterSpacing: '-0.02em' }}>
                       {project.title}
                     </h3>
                   </div>
-                  <ArrowUpRight className="project-arrow" size={18} color="var(--color-text-muted)" />
+                  <ArrowUpRight className="project-arrow" size={18} color="var(--color-secondary)" />
                 </div>
 
-                <p className="body-compact" style={{ color: 'var(--color-text-muted)' }}>
+                <p style={{ margin: 0, color: 'rgba(255, 255, 255, 0.8)', fontSize: '14px', lineHeight: '22px' }}>
                   {project.description}
                 </p>
 
@@ -181,23 +181,24 @@ export default function Portfolio({ customMediaList }) {
                   className="project-outcome"
                   style={{
                     padding: '14px 16px',
-                    background: 'var(--color-bg-muted)',
-                    border: '1px solid var(--color-border)',
+                    background: 'rgba(6, 11, 20, 0.65)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '8px',
                   }}
                 >
                   <div
                     style={{
-                      fontSize: '11px',
+                      fontSize: '10px',
                       fontWeight: 700,
-                      letterSpacing: '0.08em',
+                      letterSpacing: '0.09em',
                       textTransform: 'uppercase',
-                      color: 'var(--color-text-muted)',
-                      marginBottom: '6px',
+                      color: 'var(--color-secondary)',
+                      marginBottom: '4px',
                     }}
                   >
                     Outcome
                   </div>
-                  <p style={{ margin: 0, color: 'var(--color-text)', fontSize: '14px', lineHeight: '22px' }}>
+                  <p style={{ margin: 0, color: '#ffffff', fontSize: '13px', lineHeight: '20px', fontWeight: 500 }}>
                     {project.outcome}
                   </p>
                 </div>
@@ -209,11 +210,12 @@ export default function Portfolio({ customMediaList }) {
                       key={i}
                       style={{
                         fontSize: '11px',
-                        fontWeight: 600,
-                        padding: '5px 10px',
-                        background: '#f7f9fb',
-                        border: '1px solid var(--color-border)',
-                        color: 'var(--color-text-muted)',
+                        fontWeight: 500,
+                        padding: '4px 10px',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        color: 'rgba(255, 255, 255, 0.9)',
+                        borderRadius: '6px',
                       }}
                     >
                       {tag}

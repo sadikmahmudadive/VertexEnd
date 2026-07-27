@@ -87,7 +87,7 @@ export default function Services({ servicesList }) {
                     <span className="badge-coral" style={{ marginBottom: '14px' }}>
                       {srv.tag}
                     </span>
-                    <h3 className="heading-3" style={{ marginBottom: '10px' }}>
+                    <h3 className="heading-3" style={{ marginBottom: '10px', color: '#ffffff' }}>
                       {srv.title}
                     </h3>
                   </div>
@@ -96,8 +96,9 @@ export default function Services({ servicesList }) {
                     style={{
                       width: '44px',
                       height: '44px',
-                      background: 'rgba(37, 99, 235, 0.08)',
-                      border: '1px solid rgba(37, 99, 235, 0.16)',
+                      background: 'rgba(251, 191, 36, 0.16)',
+                      border: '1px solid rgba(251, 191, 36, 0.35)',
+                      borderRadius: '8px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -108,7 +109,7 @@ export default function Services({ servicesList }) {
                   </div>
                 </div>
 
-                <p className="body-compact" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="body-compact" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
                   {srv.description}
                 </p>
               </article>

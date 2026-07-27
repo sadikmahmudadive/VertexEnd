@@ -47,7 +47,6 @@ export default function Hero({ settings }) {
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="hero-grid">
           <div className="hero-copy reveal-on-scroll">
-            <span className="hero-eyebrow">Independent software engineering company</span>
             <h1 className="hero-title">
               {heroCopy.titleLine1} {heroCopy.titleLine2}{' '}
               <span>{heroCopy.titleLine3} {heroCopy.titleLine4}</span>

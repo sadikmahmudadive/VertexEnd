@@ -163,6 +163,15 @@ export default function ScrollAnimation() {
           height: '100%',
         }}
       />
+      {/* Multi-layered dark backdrop overlay to guarantee crisp readability across all scroll frames */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at 50% 30%, rgba(6, 11, 20, 0.2), rgba(6, 11, 20, 0.45) 80%), linear-gradient(180deg, rgba(6, 11, 20, 0.35) 0%, rgba(6, 11, 20, 0.2) 50%, rgba(6, 11, 20, 0.5) 100%)',
+          pointerEvents: 'none',
+        }}
+      />
     </div>
   );
 }
