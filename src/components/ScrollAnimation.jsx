@@ -74,7 +74,7 @@ export default function ScrollAnimation() {
     // Also update on resize as docHeight might change
     window.addEventListener('resize', handleScroll);
     handleScroll(); // run on mount
-    
+
     // Set up a MutationObserver to watch for content size changes
     const observer = new MutationObserver(handleScroll);
     observer.observe(document.body, { childList: true, subtree: true, attributes: true });
