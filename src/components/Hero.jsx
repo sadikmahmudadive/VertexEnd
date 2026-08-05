@@ -1,10 +1,10 @@
 import React from 'react';
-import { ArrowRight, Check, Cloud, ShieldCheck, BadgeCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Cloud, ShieldCheck, Sparkles, Terminal, Activity, Lock } from 'lucide-react';
 
 const DELIVERY_AREAS = [
-  { icon: Sparkles, label: 'Product engineering' },
-  { icon: Cloud, label: 'Cloud platforms' },
-  { icon: ShieldCheck, label: 'Secure operations' },
+  { icon: Sparkles, label: 'Product Engineering', detail: 'React, Next.js, Node.js' },
+  { icon: Cloud, label: 'Cloud Platforms', detail: 'Firebase, AWS, GCP' },
+  { icon: ShieldCheck, label: 'Secure Operations', detail: 'Zero-Trust, Role RBAC' },
 ];
 
 export default function Hero({ settings }) {
@@ -19,11 +19,11 @@ export default function Hero({ settings }) {
     ctaPrimaryText: settings?.ctaPrimaryText || 'Start a Project',
     ctaSecondaryText: settings?.ctaSecondaryText || 'View Capabilities',
     stat1Value: settings?.stat1Value || '12+',
-    stat1Label: settings?.stat1Label || 'Years of combined delivery',
+    stat1Label: settings?.stat1Label || 'Years of delivery',
     stat2Value: settings?.stat2Value || '99.9%',
-    stat2Label: settings?.stat2Label || 'Target platform uptime',
-    stat3Value: settings?.stat3Value || '24h',
-    stat3Label: settings?.stat3Label || 'Typical response window',
+    stat2Label: settings?.stat2Label || 'Platform uptime',
+    stat3Value: settings?.stat3Value || '< 24h',
+    stat3Label: settings?.stat3Label || 'Response SLA',
   };
 
   const stats = [
@@ -40,17 +40,23 @@ export default function Hero({ settings }) {
         overflow: 'hidden',
         background: 'transparent',
         color: 'var(--color-white)',
-        paddingTop: 'calc(72px + 84px)',
-        paddingBottom: '92px',
+        paddingTop: 'calc(64px + 96px)',
+        paddingBottom: '100px',
       }}
     >
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="hero-grid">
           <div className="hero-copy reveal-on-scroll">
+            <div className="hero-eyebrow">
+              <Sparkles size={14} color="var(--color-secondary)" />
+              <span>Full-Stack Engineering & Cloud Partner</span>
+            </div>
+
             <h1 className="hero-title">
               {heroCopy.titleLine1} {heroCopy.titleLine2}{' '}
               <span>{heroCopy.titleLine3} {heroCopy.titleLine4}</span>
             </h1>
+
             <p className="hero-description">{heroCopy.description}</p>
 
             <div className="hero-actions">
@@ -63,25 +69,44 @@ export default function Hero({ settings }) {
               </a>
             </div>
 
-            <p className="hero-assurance">
-              <Check size={16} /> Clear scope, senior delivery, and support after launch.
-            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '18px', marginTop: '28px' }}>
+              <span className="hero-assurance">
+                <Check size={16} /> Senior engineering team
+              </span>
+              <span className="hero-assurance">
+                <Check size={16} /> 100% Code ownership
+              </span>
+              <span className="hero-assurance">
+                <Check size={16} /> Post-launch SLA support
+              </span>
+            </div>
           </div>
 
           <aside className="hero-panel reveal-on-scroll delay-1" aria-label="VertexHand delivery overview">
             <div className="hero-panel-heading">
-              <span>One team, end to end</span>
-              <span className="hero-panel-status"><i /> Available for new work</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Terminal size={15} color="var(--color-primary-light)" />
+                <span>Delivery Workspace</span>
+              </div>
+              <span className="hero-panel-status">
+                <i /> Live System Status
+              </span>
             </div>
 
             <div className="hero-panel-body">
-              <p className="hero-panel-kicker">What we deliver</p>
-              <h2>From early product decisions to dependable production systems.</h2>
+              <p className="hero-panel-kicker">Core Capabilities</p>
+              <h2>From early architecture to scalable production systems.</h2>
+              
               <div className="hero-delivery-list">
-                {DELIVERY_AREAS.map(({ icon: Icon, label }) => (
+                {DELIVERY_AREAS.map(({ icon: Icon, label, detail }) => (
                   <div key={label} className="hero-delivery-item">
-                    <Icon size={19} />
-                    <span>{label}</span>
+                    <Icon size={18} />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                      <span>{label}</span>
+                      <span style={{ fontSize: '11.5px', color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-mono)' }}>
+                        {detail}
+                      </span>
+                    </div>
                     <Check size={16} className="hero-delivery-check" />
                   </div>
                 ))}

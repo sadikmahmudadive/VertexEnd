@@ -6,6 +6,7 @@ import TrustBar from './components/TrustBar';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Process from './components/Process';
+import EnterpriseFAQ from './components/EnterpriseFAQ';
 import AuthModal from './components/AuthModal';
 import AdminPanel from './components/AdminPanel';
 import ContactSection from './components/ContactSection';
@@ -138,6 +139,7 @@ export default function App() {
         <Services servicesList={servicesList} />
         <Process />
         <Portfolio customMediaList={customMediaList} />
+        <EnterpriseFAQ />
         <ContactSection />
       </main>
 

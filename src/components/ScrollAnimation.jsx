@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 
 const TOTAL_FRAMES = 300;
-const FRAME_DIR = '/scroll animation/';
+const FRAME_DIR = '/scroll%20animation/';
 
-// Pre-build all frame paths
+// Pre-build all frame paths with proper URI encoding
 const FRAME_PATHS = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
   const n = String(i + 1).padStart(3, '0');
   return `${FRAME_DIR}ezgif-frame-${n}.jpg`;
@@ -11,21 +11,45 @@ const FRAME_PATHS = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
 
 export default function ScrollAnimation() {
   const canvasRef = useRef(null);
-  const containerRef = useRef(null);
   const imagesRef = useRef([]);           // cache of loaded Image objects
   const currentFrameRef = useRef(0);      // actual displayed frame index
   const targetFrameRef = useRef(0);       // scroll-driven target frame
   const rafRef = useRef(null);
-  const loadedCountRef = useRef(0);
+  const lastDrawnFrameRef = useRef(-1);
+
+  // ─── Find nearest loaded frame if current isn't ready ─────────────────────
+  const getNearestLoadedImage = useCallback((targetIndex) => {
+    const images = imagesRef.current;
+    if (images[targetIndex] && images[targetIndex].complete && images[targetIndex].naturalWidth > 0) {
+      return images[targetIndex];
+    }
+    // Search backward first
+    for (let i = targetIndex - 1; i >= 0; i--) {
+      if (images[i] && images[i].complete && images[i].naturalWidth > 0) {
+        return images[i];
+      }
+    }
+    // Search forward if backward didn't find any
+    for (let i = targetIndex + 1; i < TOTAL_FRAMES; i++) {
+      if (images[i] && images[i].complete && images[i].naturalWidth > 0) {
+        return images[i];
+      }
+    }
+    return null;
+  }, []);
 
   // ─── Draw a specific frame to canvas ───────────────────────────────────────
   const drawFrame = useCallback((index) => {
     const canvas = canvasRef.current;
-    const img = imagesRef.current[index];
-    if (!canvas || !img || !img.complete) return;
+    if (!canvas) return;
+
+    const clampedIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(index)));
+    const img = getNearestLoadedImage(clampedIndex);
+    if (!img) return;
 
     const ctx = canvas.getContext('2d');
     const { width, height } = canvas;
+    if (!width || !height) return;
 
     // Cover-fit the image (like object-fit: cover)
     const scale = Math.max(width / img.naturalWidth, height / img.naturalHeight);
@@ -36,21 +60,22 @@ export default function ScrollAnimation() {
 
     ctx.clearRect(0, 0, width, height);
     ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
-  }, []);
+    lastDrawnFrameRef.current = clampedIndex;
+  }, [getNearestLoadedImage]);
 
   // ─── Smooth interpolation loop ─────────────────────────────────────────────
   const animLoop = useCallback(() => {
     const current = currentFrameRef.current;
     const target = targetFrameRef.current;
 
-    if (Math.abs(current - target) > 0.3) {
-      // Ease toward target (lerp factor 0.12 = smooth but responsive)
-      const next = current + (target - current) * 0.12;
+    if (Math.abs(current - target) > 0.25) {
+      // Ease toward target (lerp factor 0.14 = fluid and immediate)
+      const next = current + (target - current) * 0.14;
       currentFrameRef.current = next;
-      drawFrame(Math.round(next));
+      drawFrame(next);
     } else if (Math.round(current) !== Math.round(target)) {
       currentFrameRef.current = target;
-      drawFrame(Math.round(target));
+      drawFrame(target);
     }
 
     rafRef.current = requestAnimationFrame(animLoop);
@@ -59,21 +84,27 @@ export default function ScrollAnimation() {
   // ─── Scroll handler ────────────────────────────────────────────────────────
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight;
-      const viewportH = window.innerHeight;
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const docHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.body.clientHeight,
+        document.documentElement.clientHeight
+      );
+      const viewportH = window.innerHeight || 1;
 
       // Progress: 0 at top, 1 at bottom of page
-      const maxScroll = docHeight - viewportH;
-      const rawProgress = maxScroll > 0 ? Math.max(0, Math.min(1, scrollY / maxScroll)) : 0;
+      const maxScroll = Math.max(1, docHeight - viewportH);
+      const rawProgress = Math.max(0, Math.min(1, scrollY / maxScroll));
 
       targetFrameRef.current = rawProgress * (TOTAL_FRAMES - 1);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Also update on resize as docHeight might change
     window.addEventListener('resize', handleScroll);
-    handleScroll(); // run on mount
+    handleScroll();
 
     // Set up a MutationObserver to watch for content size changes
     const observer = new MutationObserver(handleScroll);
@@ -94,7 +125,7 @@ export default function ScrollAnimation() {
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      drawFrame(Math.round(currentFrameRef.current));
+      drawFrame(currentFrameRef.current);
     };
     resize();
     window.addEventListener('resize', resize);
@@ -106,7 +137,7 @@ export default function ScrollAnimation() {
     imagesRef.current = new Array(TOTAL_FRAMES);
     rafRef.current = requestAnimationFrame(animLoop);
 
-    // Load first frame immediately so canvas isn't blank
+    // Load first frame immediately
     const firstImg = new Image();
     firstImg.src = FRAME_PATHS[0];
     firstImg.onload = () => {
@@ -114,8 +145,8 @@ export default function ScrollAnimation() {
       drawFrame(0);
     };
 
-    // Load remaining frames in batches to avoid blocking
-    const batchSize = 10;
+    // Load remaining frames aggressively in concurrent batches
+    const batchSize = 15;
     let batchIndex = 1;
 
     const loadBatch = () => {
@@ -126,18 +157,20 @@ export default function ScrollAnimation() {
         const idx = i;
         img.onload = () => {
           imagesRef.current[idx] = img;
-          loadedCountRef.current++;
+          if (Math.abs(currentFrameRef.current - idx) < 2) {
+            drawFrame(currentFrameRef.current);
+          }
         };
       }
       batchIndex = end;
       if (batchIndex < TOTAL_FRAMES) {
-        setTimeout(loadBatch, 40);
+        setTimeout(loadBatch, 30);
       }
     };
-    setTimeout(loadBatch, 80);
+    setTimeout(loadBatch, 60);
 
     return () => {
-      cancelAnimationFrame(rafRef.current);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [animLoop, drawFrame]);
 
@@ -149,8 +182,8 @@ export default function ScrollAnimation() {
         left: 0,
         width: '100%',
         height: '100%',
-        zIndex: -10, // Keep it behind all content
-        background: '#060b14', // Default dark background to match the theme
+        zIndex: -10,
+        background: '#060b14',
         overflow: 'hidden',
         pointerEvents: 'none',
       }}
@@ -163,15 +196,16 @@ export default function ScrollAnimation() {
           height: '100%',
         }}
       />
-      {/* Multi-layered dark backdrop overlay to guarantee crisp readability across all scroll frames */}
+      {/* Lightened, subtle frosted vignette so 3D background animation is clearly visible while text is crisp */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 50% 30%, rgba(6, 11, 20, 0.2), rgba(6, 11, 20, 0.45) 80%), linear-gradient(180deg, rgba(6, 11, 20, 0.35) 0%, rgba(6, 11, 20, 0.2) 50%, rgba(6, 11, 20, 0.5) 100%)',
+          background: 'radial-gradient(circle at 50% 35%, rgba(6, 11, 20, 0.12) 0%, rgba(6, 11, 20, 0.35) 75%), linear-gradient(180deg, rgba(6, 11, 20, 0.25) 0%, rgba(6, 11, 20, 0.15) 50%, rgba(6, 11, 20, 0.4) 100%)',
           pointerEvents: 'none',
         }}
       />
     </div>
   );
 }
+
