@@ -39,8 +39,8 @@ export default function Footer() {
   };
 
   return (
-    <footer style={{ background: 'rgba(4, 7, 13, 0.85)', backdropFilter: 'blur(20px)', borderTop: '1px solid rgba(255, 255, 255, 0.08)', color: 'var(--color-white)' }}>
-      <div className="container" style={{ paddingTop: '64px', paddingBottom: '32px', position: 'relative', zIndex: 1 }}>
+    <footer className="footer-section">
+      <div className="container footer-main-container">
         <div className="footer-grid">
           <div>
             <a href="#overview" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '16px' }}>
@@ -153,44 +153,21 @@ export default function Footer() {
       </div>
 
       <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
-        <div
-          className="container"
-          style={{
-            paddingTop: '18px',
-            paddingBottom: '20px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: '12px',
-            flexWrap: 'wrap',
-          }}
-        >
-          <span style={{ fontSize: '12.5px', color: 'rgba(255, 255, 255, 0.45)' }}>
+        <div className="container footer-bottom">
+          <span className="footer-copyright">
             © {new Date().getFullYear()} VertexHand Systems LLC. All rights reserved. Built with precision.
           </span>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
+          <div className="footer-legal">
             {['Privacy Policy', 'Terms of Service', 'Security Policy'].map((item) => (
-              <a key={item} href="#" style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.45)', textDecoration: 'none' }}>
+              <a key={item} href="#" className="footer-legal-link">
                 {item}
               </a>
             ))}
 
             <button
               onClick={scrollToTop}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: 'rgba(255, 255, 255, 0.06)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                padding: '5px 12px',
-                borderRadius: '6px',
-                color: 'rgba(255, 255, 255, 0.75)',
-                fontSize: '12px',
-                cursor: 'pointer',
-                transition: 'all var(--transition)',
-              }}
+              className="footer-back-to-top"
             >
               <ArrowUp size={13} />
               <span>Back to Top</span>

@@ -134,7 +134,7 @@ export default function ContactSection() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="card-light contact-form-card" style={{ padding: '32px' }}>
+              <form onSubmit={handleSubmit} className="card-light contact-form-card">
                 <div style={{ display: 'grid', gap: '18px' }}>
                   <div className="contact-name-grid">
                     <div>
@@ -188,7 +188,7 @@ export default function ContactSection() {
                     <label className="input-label" style={{ marginBottom: '10px' }}>
                       Primary Project Focus
                     </label>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    <div className="contact-types-group">
                       {PROJECT_TYPES.map((type) => {
                         const isSelected = formData.projectType === type;
                         return (
@@ -196,21 +196,7 @@ export default function ContactSection() {
                             type="button"
                             key={type}
                             onClick={() => handleTypeSelect(type)}
-                            style={{
-                              padding: '7px 13px',
-                              borderRadius: '8px',
-                              fontSize: '12px',
-                              fontWeight: 600,
-                              cursor: 'pointer',
-                              border: isSelected
-                                ? '1px solid var(--color-secondary)'
-                                : '1px solid rgba(255, 255, 255, 0.12)',
-                              background: isSelected
-                                ? 'linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.08))'
-                                : 'rgba(255, 255, 255, 0.04)',
-                              color: isSelected ? 'var(--color-secondary-light)' : 'rgba(255, 255, 255, 0.75)',
-                              transition: 'all var(--transition)',
-                            }}
+                            className={`contact-type-btn${isSelected ? ' active' : ''}`}
                           >
                             {type}
                           </button>

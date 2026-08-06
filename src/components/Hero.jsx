@@ -33,17 +33,7 @@ export default function Hero({ settings }) {
   ];
 
   return (
-    <section
-      id="overview"
-      style={{
-        position: 'relative',
-        overflow: 'hidden',
-        background: 'transparent',
-        color: 'var(--color-white)',
-        paddingTop: 'calc(64px + 96px)',
-        paddingBottom: '100px',
-      }}
-    >
+    <section id="overview" className="hero-section">
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="hero-grid">
           <div className="hero-copy reveal-on-scroll">
@@ -69,7 +59,7 @@ export default function Hero({ settings }) {
               </a>
             </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '18px', marginTop: '28px' }}>
+            <div className="hero-assurances-wrapper">
               <span className="hero-assurance">
                 <Check size={16} /> Senior engineering team
               </span>
@@ -100,12 +90,10 @@ export default function Hero({ settings }) {
               <div className="hero-delivery-list">
                 {DELIVERY_AREAS.map(({ icon: Icon, label, detail }) => (
                   <div key={label} className="hero-delivery-item">
-                    <Icon size={18} />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                      <span>{label}</span>
-                      <span style={{ fontSize: '11.5px', color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-mono)' }}>
-                        {detail}
-                      </span>
+                    <Icon size={18} className="hero-delivery-icon" />
+                    <div className="hero-delivery-info">
+                      <span className="hero-delivery-label">{label}</span>
+                      <span className="hero-delivery-detail">{detail}</span>
                     </div>
                     <Check size={16} className="hero-delivery-check" />
                   </div>

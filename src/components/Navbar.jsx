@@ -81,7 +81,7 @@ export default function Navbar({ user, onOpenAuth, onLogout, onOpenAdmin }) {
             <div className="navbar-actions">
               <div className="nav-status-pill" title="Engineering availability status">
                 <span className="pulse-dot" />
-                <span>Available for Q3/Q4</span>
+                <span className="nav-status-pill-text">Available for Q3/Q4</span>
               </div>
 
               {isAdmin && (
@@ -120,34 +120,38 @@ export default function Navbar({ user, onOpenAuth, onLogout, onOpenAdmin }) {
         {mobileOpen && (
           <div className="mobile-nav">
             <div className="mobile-nav-inner">
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4px 12px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--color-secondary)' }}>MENU</span>
-                <span className="nav-status-pill" style={{ padding: '3px 8px', fontSize: '11px' }}>
-                  <span className="pulse-dot" /> Live
+              <div className="mobile-nav-header">
+                <span className="mobile-nav-kicker">NAVIGATION</span>
+                <span className="nav-status-pill">
+                  <span className="pulse-dot" /> <span>Live (99.99% SLA)</span>
                 </span>
               </div>
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
+                  className={`mobile-nav-link${activeSection === link.href ? ' active' : ''}`}
                   onClick={() => setMobileOpen(false)}
-                  style={{ color: activeSection === link.href ? '#60a5fa' : '#ffffff' }}
                 >
                   {link.label}
                 </a>
               ))}
               {isAdmin && (
-                <button type="button" onClick={() => closeAndRun(onOpenAdmin)}>
-                  Open content studio
+                <button type="button" className="mobile-nav-btn" onClick={() => closeAndRun(onOpenAdmin)}>
+                  <Settings size={16} /> Open Content Studio
                 </button>
               )}
-              {!user && (
-                <button type="button" onClick={() => closeAndRun(onOpenAuth)}>
-                  Team sign in
+              {!user ? (
+                <button type="button" className="mobile-nav-btn" onClick={() => closeAndRun(onOpenAuth)}>
+                  <LogIn size={16} /> Team Sign In
+                </button>
+              ) : (
+                <button type="button" className="mobile-nav-btn" onClick={() => closeAndRun(onLogout)}>
+                  <LogOut size={16} /> Sign Out
                 </button>
               )}
               <a href="#contact" className="mobile-nav-cta" onClick={() => setMobileOpen(false)}>
-                Start a project
+                Start a Project
               </a>
             </div>
           </div>
